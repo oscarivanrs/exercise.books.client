@@ -1,0 +1,16 @@
+<div>
+    <h2>Login</h2>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+            <mat-error *ngIf="signInForm.get('username')?.invalid && signInForm.get('username')?.touched">Username is <strong>required</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-error *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.touched">Password is <strong>required</strong></mat-error>
+        </mat-form-field>
+        <button mat-flat-button type="submit" [disabled]="signInForm.invalid">Login</button>
+    </form>
+</div>

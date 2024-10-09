@@ -1,0 +1,29 @@
+<div>
+    <h2>New User</h2>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+            <mat-error *ngIf="signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched">Username is <strong>required</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-error *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">Password is <strong>required</strong></mat-error>
+            <div class="text-red-400 text-sm" *ngIf="signUpForm.get('password')?.dirty">
+                <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('^(?=.*[A-Z])')}">At least oneu ppercase
+                                        letter.</span>
+                <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('(?=.*[a-z])')}">At least one lowercase
+                                        letter.</span>
+                <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('(.*[0-9].*)')}">At least one
+                                        digit.</span>
+                <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('(?=.*[!@#$%^&*])')}">At least one
+                                        special
+                                        character.</span>
+                <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('.{8,}')}">At least 8 characters
+                                        long.</span>
+             </div>
+        </mat-form-field>
+        <button mat-flat-button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+    </form>
+</div>
