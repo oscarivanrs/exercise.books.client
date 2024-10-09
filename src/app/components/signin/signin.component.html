@@ -1,6 +1,6 @@
-<div>
+<div class="login-form">
     <h2>Login</h2>
-    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="row">
         <mat-form-field>
             <mat-label>Username</mat-label>
             <input matInput formControlName="username">
@@ -13,4 +13,5 @@
         </mat-form-field>
         <button mat-flat-button type="submit" [disabled]="signInForm.invalid">Login</button>
     </form>
+    <a mat-button routerLink="signup">Sign Up</a>
 </div>

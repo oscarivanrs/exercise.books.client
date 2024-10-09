@@ -1,4 +1,4 @@
-<div>
+<div class="signup-form">
     <h2>New User</h2>
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
@@ -10,7 +10,7 @@
             <mat-label>Password</mat-label>
             <input matInput formControlName="password" type="password">
             <mat-error *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">Password is <strong>required</strong></mat-error>
-            <div class="text-red-400 text-sm" *ngIf="signUpForm.get('password')?.dirty">
+            <!--div class="text-red-400 text-sm" *ngIf="signUpForm.get('password')?.dirty">
                 <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('^(?=.*[A-Z])')}">At least oneu ppercase
                                         letter.</span>
                 <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('(?=.*[a-z])')}">At least one lowercase
@@ -22,7 +22,7 @@
                                         character.</span>
                 <span class="block" [ngClass]="{'text-primary': signUpForm.get('password')?.value?.match('.{8,}')}">At least 8 characters
                                         long.</span>
-             </div>
+             </div-->
         </mat-form-field>
         <button mat-flat-button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
     </form>

@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -10,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SigninComponent {
   signInForm!: FormGroup;
 
-  constructor() {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.signInForm = new FormGroup({
@@ -20,6 +22,14 @@ export class SigninComponent {
    }
  
    onSubmit() {
-     console.log(this.signInForm);
+    this.auth.signIn(this.signInForm.value.username, this.signInForm.value.password).subscribe((loggedIn) => {
+      if (loggedIn) {
+        console.log('Log In successful!');
+        this.signInForm.reset();
+        this.router.navigate(['/']);
+      } else {
+        console.error('Sign-in failed!');
+      }
+    });
    }
 }

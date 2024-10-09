@@ -1,9 +1,37 @@
 .dashboard-container {
+    display: flex;
     width: auto;
-    height: 200px;
+    height: 100vh;
     margin: 10px;
     border: 1px solid #555;
     /* The background property is added to clearly distinguish the borders between drawer and main
        content */
     background: #eee;
   }
+ 
+ .dashboard-container mat-drawer {
+   flex: 0 0 auto; /* Ocupa solo lo spazio necessario */
+ }
+ 
+ .dashboard-container mat-drawer-content {
+   flex: 1 0 auto; /* Occupa il resto dello spazio */
+ }
+ 
+ .logout-button {
+   position: absolute;
+   bottom: 16px; /* Regola il valore in base alle tue esigenze */
+   left: 16px;
+ }
+
+ a:hover {
+   background-color: lightgray;
+   color: rgb(255, 0, 0);
+ }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 40
+}

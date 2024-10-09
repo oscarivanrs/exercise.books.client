@@ -6,14 +6,18 @@ import { BooksComponent } from './components/books/books.component';
 import { BooksgestComponent } from './components/booksgest/booksgest.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent, canActivate: [authGuard], children: [
-    {path: ':books', component: BooksComponent},
-    {path: ':booksgest', component: BooksgestComponent}
-  ]},
   {path: 'signin', component: SigninComponent},
-  {path: 'signup', component: SignupComponent}
+  {path: 'signup', component: SignupComponent},
+  {path: 'signin/signup', redirectTo: "signup"},
+  {path: '', component: DashboardComponent, canActivate: [authGuard], children: [
+    {path: '', redirectTo: "books", pathMatch: "full"},
+    {path: 'books', component: BooksComponent},
+    {path: 'booksgest', component: BooksgestComponent},
+    {path: 'profile', component: ProfileComponent}
+  ]}
 ];
 
 @NgModule({
