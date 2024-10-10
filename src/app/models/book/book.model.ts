@@ -6,9 +6,5 @@ import { Component, Inject } from '@angular/core';
   styleUrl: './book.model.css'
 })
 export class BookModel {
-  constructor(@Inject('id') private id: number, @Inject('title') public title: string, @Inject('author') public author: string) {}
-
-  getId() {
-    return this.id;
-  }
+  constructor(@Inject('id') public id: number, @Inject('title') public title: string, @Inject('author') public author: string) {}
 }

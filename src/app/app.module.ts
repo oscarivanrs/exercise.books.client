@@ -11,6 +11,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -45,6 +46,7 @@ import { BookModel } from './models/book/book.model';
     MatListModule,
     MatButtonModule,
     MatTableModule,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync(),

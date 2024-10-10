@@ -1,1 +1,17 @@
-<p>profile works!</p>
+<div class="container">
+    <mat-card class="profile-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ profile?.username }}</mat-card-title>
+            <mat-card-subtitle>enable: {{ profile?.enabled }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <ul>
+            <li>accountNonLocked: {{ profile?.accountNonLocked }}</li>
+            <li>accountNonExpired: {{ profile?.accountNonExpired }}</li>
+            <li>credentialsNonExpired: {{ profile?.credentialsNonExpired }}</li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+</div>

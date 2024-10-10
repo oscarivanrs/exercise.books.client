@@ -24,8 +24,10 @@ export class BooksComponent implements AfterViewInit {
   constructor(private bookService: BooksService) {}
 
   ngOnInit(): void {
+    console.log("books onInit()")
     this.bookService.listBooks().subscribe((data)=>{
       BOOKS_DATA.push(...data);
+      this.dataSource = new MatTableDataSource(data);
     });
   }
 
