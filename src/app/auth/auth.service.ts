@@ -1,8 +1,13 @@
 import { environment } from './../../environments/environment'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { UserModel } from '../models/user/user.model';
+
+const staticHeaders = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*'
+};
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +15,6 @@ import { UserModel } from '../models/user/user.model';
 export class AuthService {
   private storageName = "EXERCISE.BOOKS.USER";
   private loggedUser!: UserModel;
-
   constructor(private http: HttpClient) { }
 
   init() {
@@ -51,7 +55,7 @@ export class AuthService {
       password: password
     };
     console.log(`logging ... ${body.username} to ${environment.authEndpoint}${environment.apiUserSignIn}`);
-    return this.http.post<any>(`${environment.authEndpoint}${environment.apiUserSignIn}`, body).pipe(map(userData => {
+    return this.http.post<any>(`${environment.authEndpoint}${environment.apiUserSignIn}`, body, { headers: this.getHeaders() }).pipe(map(userData => {
         console.log('signIn successful');
         const expirationDate: number = new Date( new Date().getTime() + userData.expiresIn * 1000 ).getTime();
         this.setUser(new UserModel(username, userData.token, expirationDate));
@@ -66,6 +70,14 @@ export class AuthService {
       console.log('Codice di stato:', error.status);
       return of(false);
     }));
+  }
+
+  getHeaders(): HttpHeaders {
+    let headers = new HttpHeaders(staticHeaders);
+    if(this.loggedUser) {
+      headers = headers.append('Authorization', `Bearer ${this.getToken()}`);
+    }
+    return headers;
   }
 
   private setUser(user: UserModel | undefined) {
