@@ -1,13 +1,14 @@
-<div class="container">
+<div class="profile-info">
     <mat-card class="profile-card" appearance="outlined">
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>{{ profile?.username }}</mat-card-title>
-            <mat-card-subtitle>enable: {{ profile?.enabled }}</mat-card-subtitle>
+            <mat-card-subtitle>Admin: {{ isAdmin() }}</mat-card-subtitle>
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
           <ul>
+            <li>enable: {{ profile?.enabled }}</li>
             <li>accountNonLocked: {{ profile?.accountNonLocked }}</li>
             <li>accountNonExpired: {{ profile?.accountNonExpired }}</li>
             <li>credentialsNonExpired: {{ profile?.credentialsNonExpired }}</li>

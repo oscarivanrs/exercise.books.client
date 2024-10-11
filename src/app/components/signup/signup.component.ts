@@ -32,20 +32,27 @@ export class SignupComponent {
      console.log(this.signUpForm);
      this.auth.newUser(this.signUpForm.value.username,this.signUpForm.value.password).subscribe({
       next: (data) => {
-        console.log('Sign Up successful');
-        this.signUpForm.reset();
-        this.router.navigate(['/signin']);
+        if(data) {
+          console.log('Sign Up successful');
+          this.signUpForm.reset();
+          this.openDialog(DialogSuccessReg);
+          this.router.navigate(['/signin']);
+        } else {
+          console.log('There was an error!');
+          this.openDialog(DialogFailReg);
+        }
       },
       error: (error) => {
-        console.error('There was an error!', error.message);
+        console.log('There was an error!', error.message);
+        this.openDialog(DialogFailReg);
       },
     });
    }
 
    dialog = inject(MatDialog);
 
-   openDialog() {
-    
+   openDialog(dialog: any) {
+    this.dialog.open(dialog);
   }
 }
 /* https://medium.com/@ojiofor/angular-reactive-forms-strong-password-validation-8dbcce92eb6c */

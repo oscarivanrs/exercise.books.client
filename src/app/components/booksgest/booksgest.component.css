@@ -1,0 +1,35 @@
+.adminbooks-small-box, .adminbooks-large-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .adminbooks-small-box {
+    height: 100px;
+    width: 100px;
+  }
+  
+  .adminbooks-large-box {
+    height: 300px;
+    width: 300px;
+  }
+
+  .newbook-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.delete-button {
+    background-color: #ff7f50		;
+    color: #ff0000		;
+  }

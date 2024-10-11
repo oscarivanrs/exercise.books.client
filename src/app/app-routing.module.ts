@@ -7,6 +7,7 @@ import { BooksgestComponent } from './components/booksgest/booksgest.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { adminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
   {path: 'signin', component: SigninComponent},
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path: '', component: DashboardComponent, canActivate: [authGuard], children: [
     {path: '', redirectTo: "books", pathMatch: "full"},
     {path: 'books', component: BooksComponent},
-    {path: 'booksgest', component: BooksgestComponent},
+    {path: 'booksgest', component: BooksgestComponent, canActivate: [adminGuard]},
     {path: 'profile', component: ProfileComponent}
   ]}
 ];

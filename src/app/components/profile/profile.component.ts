@@ -26,4 +26,8 @@ export class ProfileComponent {
       this.profile = data;
     });
   }
+
+  isAdmin(): boolean {
+    return this.auth.isAdmin();
+  }
 }

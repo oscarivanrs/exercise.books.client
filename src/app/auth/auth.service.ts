@@ -25,15 +25,14 @@ export class AuthService {
     }
   }
 
-  isLogged() {
-    if(this.loggedUser!=null) {
+  isLogged(): boolean {
+    if(this.loggedUser) {
       if(new Date().getTime() > this.loggedUser.getExpiresIn()) {
         this.SignOut();
       }
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   newUser(username: string, password: string): Observable<boolean> {
@@ -42,6 +41,10 @@ export class AuthService {
       map((response) => {
         console.log(response);
         return true;
+      }),
+      tap((response: any) => {
+        console.log('Risposta HTTP:', response);
+        console.log('Codice di stato:', response.status);
       }),
       catchError(error => {
         console.error('Errore durante la registrazione del nuovo utente:', error);
@@ -114,6 +117,13 @@ export class AuthService {
           return profile;
         })
       );
+  }
+
+  isAdmin(): boolean {
+    if(this.isLogged()) {
+      return this.loggedUser.getUsername() === "oscarivan";
+    }
+    return false;
   }
 
   SignOut(): void {

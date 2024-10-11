@@ -10,7 +10,11 @@ export class DashboardComponent {
 
   constructor(private auth: AuthService) {}
 
-  logout() {
+  logout(): void {
     this.auth.SignOut();
+  }
+
+  isAdmin(): boolean {
+    return this.auth.isAdmin();
   }
 }

@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-signin',
@@ -11,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent {
   signInForm!: FormGroup;
+
+  dialog = inject(MatDialog);
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -29,7 +33,17 @@ export class SigninComponent {
         this.router.navigate(['/']);
       } else {
         console.error('Sign-in failed!');
+        this.dialog.open(DialogFailedLogin);
       }
     });
    }
 }
+
+@Component({
+  selector: 'DialogFailedLogin',
+  templateUrl: './DialogFailedLogin.html',
+  standalone: true,
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogFailedLogin {}
