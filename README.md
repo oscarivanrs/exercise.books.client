@@ -1,5 +1,14 @@
 # Books
 
+This application is a web-based client for managing a book collection. It utilizes the functionalities exposed by the backend API provided by books.server.
+
+## Features:
+
+- User Authentication: Users can log in to the application or register for a new account.
+- Book Management:
+- - Listing: Users can view a list of all available books.
+- - CRUD (Admin Only): Admin users can add new books, edit existing ones, and delete books from the collection.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
 
 ## Development server
