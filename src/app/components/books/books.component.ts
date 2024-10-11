@@ -1,6 +1,5 @@
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {AfterViewInit, Component, ViewChild, inject} from '@angular/core';
-import {MatSort, Sort} from '@angular/material/sort';
+import {Component, ViewChild} from '@angular/core';
+import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { BookModel } from '../../models/book/book.model';
 import { BooksService } from '../../services/books.service';
@@ -12,9 +11,7 @@ let BOOKS_DATA: BookModel[] = [];
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })
-export class BooksComponent implements AfterViewInit {
-
-  private _liveAnnouncer = inject(LiveAnnouncer);
+export class BooksComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -31,20 +28,8 @@ export class BooksComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
-
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: any /*Sort*/) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
